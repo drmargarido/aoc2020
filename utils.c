@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <string.h>
+#include <stdbool.h>
 
 int INDEX(int line, int col, int width){
   return line * width + col;
