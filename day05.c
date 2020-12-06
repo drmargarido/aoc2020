@@ -34,8 +34,8 @@ int binary_search_value(
 }
 
 int get_boarding_pass_seat(char * pass){
-  int line = binary_search_value('F', 'B', 0, 127, pass, 7);
-  int col = binary_search_value('L', 'R', 0, 7, &pass[7], 3);
+  int line = binary_search_value('F', 'B', 0, ROWS - 1, pass, 7);
+  int col = binary_search_value('L', 'R', 0, COLS - 1, &pass[7], 3);
   return INDEX(line, col, 8);
 }
 

@@ -104,3 +104,12 @@ bool is_one_of(char * field, char * possible[], int len){
   }
   return false;
 }
+
+unsigned int count_set_bits(int num){
+  unsigned int count = 0;
+  while (num) {
+    count += num & 1;
+    num = num >> 1;
+  }
+  return count;
+}
