@@ -74,10 +74,11 @@ bool already_exists_in_list(Rule * bag, Rule * checked, int checked_length){
 
 int bag_in(Rule * bag, Rule * rules, int total_rules){
   int count = 0;
-  Rule * remaining = malloc(sizeof(Rule) * 100);
-  Rule * checked = malloc(sizeof(Rule) * 300);
+
+  Rule checked[300] = {};
   int checked_count = 0;
-  remaining[0] = *bag;
+
+  Rule remaining[100] = {*bag};
   int remaining_count = 1;
   while(remaining_count > 0){
     Rule current_rule = remaining[remaining_count - 1];
@@ -99,8 +100,6 @@ int bag_in(Rule * bag, Rule * rules, int total_rules){
       }
     }
   }
-  free(checked);
-  free(remaining);
   return count;
 }
 
@@ -120,9 +119,7 @@ typedef struct RuleNode {
 
 int count_total_needed_bags(Rule bag, Rule * rules, int len){
   int total = 0;
-  RuleNode * remaining = malloc(sizeof(RuleNode) * 100);
-  RuleNode start = {bag, 1};
-  remaining[0] = start;
+  RuleNode remaining[100] = {{bag, 1}};
   int remaining_count = 1;
   while(remaining_count > 0){
     RuleNode n = remaining[remaining_count-1];
@@ -140,7 +137,6 @@ int count_total_needed_bags(Rule bag, Rule * rules, int len){
       remaining_count++;
     }
   }
-  free(remaining);
   return total;
 }
 

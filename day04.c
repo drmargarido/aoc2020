@@ -97,11 +97,11 @@ bool is_passport_valid(int fields){
   return (fields & mask) == mask;
 }
 
+static match_pair pairs[] = {
+  {"byr", BYRTH}, {"iyr", ISSUE_YEAR}, {"eyr", EXPIRE_YEAR}, {"hgt", HEIGHT},
+  {"hcl", HAIR_COLOR}, {"ecl", EYE_COLOR}, {"pid", PASSPORT_ID}, {"cid", COUNTRY_ID}
+};
 int identify_field(char * field){
-  match_pair pairs[] = {
-    {"byr", BYRTH}, {"iyr", ISSUE_YEAR}, {"eyr", EXPIRE_YEAR}, {"hgt", HEIGHT},
-    {"hcl", HAIR_COLOR}, {"ecl", EYE_COLOR}, {"pid", PASSPORT_ID}, {"cid", COUNTRY_ID}
-  };
   return match(field, pairs, 8);
 }
 

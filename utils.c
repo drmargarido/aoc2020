@@ -113,3 +113,25 @@ unsigned int count_set_bits(int num){
   }
   return count;
 }
+
+bool in_array(int v, int * arr, int len){
+  for(int i=0; i < len; i++){
+    if(v == arr[i]){
+      return true;
+    }
+  }
+  return false;
+}
+
+void switch_values(int * i, int val1, int val2){
+  if(*i == val1){
+    *i = val2;
+  }
+  else if(*i == val2){
+    *i = val1;
+  }
+  else {
+    printf("The received value is not one of the two %d\n", *i);
+  }
+}
+

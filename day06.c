@@ -40,10 +40,11 @@ static match_pair pairs[] = {
   {"v", V}, {"w", W}, {"x", X}, {"y", Y}, {"z", Z}
 };
 void detect_person_answers(char * input, int * answers){
+  char l[2] = "\0\0";
+  int val;
   while(*input != '\0'){
-    char l[2] = "\0\0";
     l[0] = *input;
-    int val = match(l, pairs, 26);
+    val = match(l, pairs, 26);
     *answers |= val;
     input++;
   }

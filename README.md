@@ -1,5 +1,5 @@
 # aoc2020
-Solving the (Advent of Code challenges)[https://adventofcode.com/] of 2020 using C.
+Solving the Advent of Code challenges https://adventofcode.com/ of 2020 using C.
 
 ## Run
 Compile all the days with make
