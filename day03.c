@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include "utils.c"
 
 #define INPUT_FILE "day3_input.txt"
@@ -108,18 +109,15 @@ int main(){
   generate_map(map, input, lines, cols);
   free(input);
 
-  int hits1 = check_tree_hits(map, lines, cols, SLOPE1);
-  int hits2 = check_tree_hits(map, lines, cols, SLOPE2);
-  int hits3 = check_tree_hits(map, lines, cols, SLOPE3);
-  int hits4 = check_tree_hits(map, lines, cols, SLOPE4);
-  int hits5 = check_tree_hits(map, lines, cols, SLOPE5);
+  int64_t hits1 = check_tree_hits(map, lines, cols, SLOPE1);
+  int64_t hits2 = check_tree_hits(map, lines, cols, SLOPE2);
+  int64_t hits3 = check_tree_hits(map, lines, cols, SLOPE3);
+  int64_t hits4 = check_tree_hits(map, lines, cols, SLOPE4);
+  int64_t hits5 = check_tree_hits(map, lines, cols, SLOPE5);
   printf("Tree Hits %d | %d | %d | %d | %d \n", hits1, hits2, hits3, hits4, hits5);
   free(map);
 
-  int mul = 1;
-  float result = hits1 * hits2 * hits3 * hits4;
-  mul = mul * 10;
-  result = result * (hits5 / 10.0);
-  printf("Final Result %f * %d\n", result, mul);
+  int64_t result = hits1 * hits2 * hits3 * hits4 * hits5;
+  printf("Final Result %lld\n", result);
   return 0;
 }
