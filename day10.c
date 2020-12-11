@@ -59,7 +59,7 @@ int main(){
   int * numbers = malloc(sizeof(int) * len);
   parse_numbers(input, &numbers[1]);
   numbers[0] = 0;
-  numbers[len-1] = max(numbers, len-1) + 3;
+  numbers[len-1] = arr_max(numbers, len-1) + 3;
   free(input);
 
   sort_int_array(numbers, len);
@@ -69,7 +69,7 @@ int main(){
   printf("Part1 result %d\n", one_differences * three_differences);
 
   int64_t arrangements = calc_possible_arrangements(numbers, len);
-  printf("Part2 possible arrangements %lld\n", arrangements);
+  printf("Part2 possible arrangements %ld\n", arrangements);
 
   free(numbers);
   return 0;

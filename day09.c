@@ -88,10 +88,10 @@ int main(){
   read_file(INPUT_FILE, input, size);
 
   int64_t invalid_num = process_until_invalid(input);
-  printf("Invalid number found %lld\n", invalid_num);
+  printf("Invalid number found %ld\n", invalid_num);
 
   int64_t weakness_num = find_encription_weakness(input, invalid_num);
-  printf("Encryption weakness is %lld\n", weakness_num);
+  printf("Encryption weakness is %ld\n", weakness_num);
 
   free(input);
   return 0;

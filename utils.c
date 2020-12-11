@@ -175,7 +175,7 @@ char * consume_int64(int64_t * num, char * input){
   return input;
 }
 
-int max(int * arr, int len){
+int arr_max(int * arr, int len){
   int max = INT_MIN;
   for(int i=0; i < len; i++){
     if(arr[i] > max){
@@ -185,7 +185,7 @@ int max(int * arr, int len){
   return max;
 }
 
-int min(int * arr, int len){
+int arr_min(int * arr, int len){
   int min = INT_MAX;
   for(int i=0; i < len; i++){
     if(arr[i] < min){
@@ -214,3 +214,10 @@ void sort_int_array(int * arr, int len){
   }
 }
 
+int max(int a, int b){
+  return a > b ? a : b;
+}
+
+int min(int a, int b){
+  return a < b ? a : b;
+}

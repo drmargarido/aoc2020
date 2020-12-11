@@ -114,10 +114,10 @@ int main(){
   int64_t hits3 = check_tree_hits(map, lines, cols, SLOPE3);
   int64_t hits4 = check_tree_hits(map, lines, cols, SLOPE4);
   int64_t hits5 = check_tree_hits(map, lines, cols, SLOPE5);
-  printf("Tree Hits %d | %d | %d | %d | %d \n", hits1, hits2, hits3, hits4, hits5);
+  printf("Tree Hits %ld | %ld | %ld | %ld | %ld \n", hits1, hits2, hits3, hits4, hits5);
   free(map);
 
   int64_t result = hits1 * hits2 * hits3 * hits4 * hits5;
-  printf("Final Result %lld\n", result);
+  printf("Final Result %ld\n", result);
   return 0;
 }
