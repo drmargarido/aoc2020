@@ -9,10 +9,8 @@
 
 char * process_preamble(char * input, int64_t * preamble){
   for(int i=0; i < PREAMBLE_LEN; i++){
-    char num[15] = "";
-    input = consume_until_whitespace(num, input);
+    input = consume_int64(&preamble[i], input);
     input++;
-    preamble[i] = atoi(num);
   }
   return input;
 }

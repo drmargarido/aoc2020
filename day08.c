@@ -24,16 +24,14 @@ Operation get_operation(char * op){
 
 void parse_instructions(char * input, Instruction * instructions){
   char op[4] = "";
-  char arg[5] = "";
   int line = 0;
   while(*input != '\0'){
     input = consume_until_whitespace(op, input);
     input++;
-    input = consume_until_whitespace(arg, input);
+    input = consume_int(&instructions[line].argument, input);
     input++;
 
     instructions[line].operation = get_operation(op);
-    instructions[line].argument = atoi(arg);
     line++;
   }
 }
