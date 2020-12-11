@@ -2,6 +2,8 @@
 #include <stddef.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
+#include <limits.h>
 
 int INDEX(int line, int col, int width){
   return line * width + col;
@@ -132,6 +134,83 @@ void switch_values(int * i, int val1, int val2){
   }
   else {
     printf("The received value is not one of the two %d\n", *i);
+  }
+}
+
+char * consume_int(int * num, char * input){
+  char number_text[12] = "";
+  int idx = 0;
+  if(*input == '-' || *input == '+'){
+    number_text[0] = *input;
+    idx++;
+    input++;
+  }
+
+  while(*input != '\0' && *input >= '0' && *input <= '9' ){
+    number_text[idx] = *input;
+    input++;
+    idx++;
+  }
+  number_text[idx] = '\0';
+  *num = atoi(number_text);
+  return input;
+}
+
+char * consume_int64(int64_t * num, char * input){
+  char number_text[20] = "";
+  int idx = 0;
+  if(*input == '-' || *input == '+'){
+    number_text[0] = *input;
+    idx++;
+    input++;
+  }
+
+  while(*input != '\0' && *input >= '0' && *input <= '9'){
+    number_text[idx] = *input;
+    input++;
+    idx++;
+  }
+  number_text[idx] = '\0';
+  *num = atoll(number_text);
+  return input;
+}
+
+int max(int * arr, int len){
+  int max = INT_MIN;
+  for(int i=0; i < len; i++){
+    if(arr[i] > max){
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+int min(int * arr, int len){
+  int min = INT_MAX;
+  for(int i=0; i < len; i++){
+    if(arr[i] < min){
+      min = arr[i];
+    }
+  }
+  return min;
+}
+
+void swap(int *a, int *b){
+  int tmp = *b;
+  *b = *a;
+  *a = tmp;
+}
+
+void sort_int_array(int * arr, int len){
+  bool all_sorted = false;
+  while(!all_sorted){
+    all_sorted = true;
+    for(int i=0; i < len - 1; i++){
+      if(arr[i] > arr[i+1]){
+        swap(&arr[i], &arr[i+1]);
+        all_sorted = false;
+      }
+    }
   }
 }
 
