@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <limits.h>
+#include <math.h>
 
 int INDEX(int line, int col, int width){
   return line * width + col;
@@ -24,7 +25,7 @@ void read_file(const char * name, char * buffer, size_t size){
 }
 
 char * consume_until(char l, char * buffer, char * stream){
-  while(*stream != l){
+  while(*stream != l && *stream != '\0'){
     *buffer = *stream;
     buffer++;
     stream++;
@@ -35,7 +36,7 @@ char * consume_until(char l, char * buffer, char * stream){
 
 /* Includes tabs and end of line */
 char * consume_until_whitespace(char * buffer, char * stream){
-  while(*stream != ' ' && *stream != '\t' && *stream != '\n'){
+  while(*stream != ' ' && *stream != '\t' && *stream != '\n' && *stream != '\0'){
     *buffer = *stream;
     buffer++;
     stream++;
@@ -45,7 +46,7 @@ char * consume_until_whitespace(char * buffer, char * stream){
 }
 
 char * ignore_until(char l, char * stream){
-  while(*stream != l){
+  while(*stream != l && *stream != '\0'){
     stream++;
   }
   return stream;
@@ -53,7 +54,7 @@ char * ignore_until(char l, char * stream){
 
 /* Includes tabs and end of line */
 char * ignore_until_whitespace(char * stream){
-  while(*stream != ' ' && *stream != '\t' && *stream != '\n'){
+  while(*stream != ' ' && *stream != '\t' && *stream != '\n' && *stream != '\0'){
     stream++;
   }
   return stream;
@@ -63,7 +64,7 @@ size_t get_file_lines(char * input){
   size_t lines = 0;
   while(*input != '\0'){
     input = ignore_until('\n', input);
-    input++;
+    if(*input == '\n')  input++;
     lines++;
   }
   return lines;
@@ -221,3 +222,17 @@ int max(int a, int b){
 int min(int a, int b){
   return a < b ? a : b;
 }
+
+int abs(int a){
+  if(a < 0)  a *= -1;
+  return a;
+}
+
+float radians_to_degrees(float rad){
+  return rad * 180 / M_PI;
+}
+
+float degrees_to_radians(float deg){
+  return deg * M_PI / 180;
+}
+
