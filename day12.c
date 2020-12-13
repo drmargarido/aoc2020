@@ -78,15 +78,11 @@ Vec2 process_instructions(Instruction * instructions, int len){
 }
 
 Vec2 rotate_waypoint(Vec2 waypoint, int rot){
-  int dot = vec2_dot(waypoint, east);
-  float norm = vec2_len(waypoint) * vec2_len(east);
-  float current_angle = radians_to_degrees(acos(dot / norm));
-
-  /* acos returns the minimum possible angle to the vector */
+  float current_angle = vec2_angle_between(waypoint, east);
   if(waypoint.y < 0)  current_angle = 360 - current_angle;
 
   float next_angle = current_angle + rot;
-  float radius = vec2_len(waypoint);
+  float radius = vec2_mag(waypoint);
 
   float new_x = radius * cos(degrees_to_radians(next_angle));
   float new_y = radius * sin(degrees_to_radians(next_angle));

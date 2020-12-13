@@ -45,10 +45,18 @@ Vec2 vec2_div(Vec2 a, int b){
   return result;
 }
 
-float vec2_len(Vec2 v){
+float vec2_mag(Vec2 v){
   return sqrt(v.x * v.x + v.y * v.y);
 }
 
 int vec2_dot(Vec2 a, Vec2 b){
   return a.x * b.x + a.y * b.y;
+}
+
+/* Angle is the minimum possible angle between the vectors */
+float vec2_angle_between(Vec2 a, Vec2 b){
+  int dot = vec2_dot(a, b);
+  float norm = vec2_mag(a) * vec2_mag(b);
+  float angle = radians_to_degrees(acos(dot / norm));
+  return angle;
 }
