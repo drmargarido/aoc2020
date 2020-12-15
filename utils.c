@@ -45,6 +45,16 @@ char * consume_until_whitespace(char * buffer, char * stream){
   return stream;
 }
 
+#define consume_until_cond_m(buffer, stream, cond) do { \
+  char * buffer_ptr = buffer; \
+  while(*stream != '\0' && (cond)){ \
+    *buffer_ptr = *stream; \
+    buffer_ptr++; \
+    stream++; \
+  } \
+  *buffer_ptr = '\0'; \
+} while(false);
+
 char * ignore_until(char l, char * stream){
   while(*stream != l && *stream != '\0'){
     stream++;
@@ -236,3 +246,11 @@ float degrees_to_radians(float deg){
   return deg * M_PI / 180;
 }
 
+void print_bits(uint64_t num)
+{
+   for(int bit=0;bit<(sizeof(uint64_t) * 8); bit++)
+   {
+      printf("%i", num & 0x01);
+      num = num >> 1;
+   }
+}

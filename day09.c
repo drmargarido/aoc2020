@@ -41,7 +41,7 @@ int64_t process_until_invalid(char * input){
     }
 
     /* Shift all preamble data one position and insert the new value */
-    memcpy(preamble, &preamble[1], sizeof(int64_t) * PREAMBLE_LEN - 1);
+    memcpy(preamble, &preamble[1], sizeof(int64_t) * (PREAMBLE_LEN - 1));
     preamble[PREAMBLE_LEN - 1] = val;
   }
   return -1;
@@ -84,7 +84,7 @@ int64_t find_encription_weakness(char * input, int64_t invalid_num){
 
 int main(){
   size_t size = get_file_size(INPUT_FILE);
-  char * input = malloc(size);
+  char input[size];
   read_file(INPUT_FILE, input, size);
 
   int64_t invalid_num = process_until_invalid(input);
@@ -92,7 +92,5 @@ int main(){
 
   int64_t weakness_num = find_encription_weakness(input, invalid_num);
   printf("Encryption weakness is %ld\n", weakness_num);
-
-  free(input);
   return 0;
 }
